@@ -37,3 +37,36 @@ class ExpenseTracker:
         self.transactions.append(transaction)
         self.save_transactions()
         print("Income added ")
+    
+    def view_all(self):
+        if not self.transactions:
+            print("no transaction found")
+        else:
+            for transaction in self.transactions:
+                print(transaction)
+    
+    def monthly_summary(self):
+            total_income = 0
+            total_expense = 0
+            categories = {}
+            for transaction in self.transactions:
+                if transaction.trans_type == "income":
+                    total_income += transaction.amount
+                else:
+                    total_expense += transaction.amount
+                
+                category = transaction.category
+                if category not in categories:
+                    categories[category] =  0
+                categories[category]  += transaction.amount
+            
+            balance = total_income - total_expense
+            print(f"\n===== MONTHLY SUMMARY =====")
+            print(f"Total Income  : ₹{total_income}")
+            print(f"Total Expense : ₹{total_expense}")
+            print(f"Balance       : ₹{balance}")
+            print(f"\nCategory Breakdown:")
+            for category, amount in categories.items():
+                print(f"  {category} : ₹{amount}")
+            
+            print("===========================")
