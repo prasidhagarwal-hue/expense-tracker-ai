@@ -22,7 +22,7 @@ class ExpenseTracker:
     def save_transactions(self):
         with open(self.filename, "w") as f:
             fieldnames = ["amount", "category", "trans_type" , "date", "note"]
-            write = csv.DictWriter(f)
+            write = csv.DictWriter(f, fieldnames=fieldnames)
             write.writeheader()
             for t in self.transactions:
                 write.writerow(t.to_dict())
@@ -36,7 +36,7 @@ class ExpenseTracker:
     def add_income(self,amount, category, note= ""):
         transaction = Transaction(amount, category, "income", note)
         self.transactions.append(transaction)
-        self.save_transaction()
+        self.save_transactions()
         print("Income added")
     
     def view_all(self):

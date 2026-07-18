@@ -12,7 +12,7 @@ class Transaction:
         return {
             "amount"   : self.amount,
             "category" : self.category,
-            "type"     : self.trans_type,
+            "trans_type"     : self.trans_type,
             "date"     : self.date,
             "note"     : self.note
         }
